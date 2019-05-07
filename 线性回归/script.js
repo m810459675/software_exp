@@ -2,7 +2,7 @@
  * Get the car data reduced to just the variables we are interested
  * and cleaned of missing data.
  */
-
+/*jshint esversion:8*/
 async function getData() {
   const carsDataReq = await fetch('https://storage.googleapis.com/tfjs-tutorials/carsData.json');
   const carsData = await carsDataReq.json();
@@ -60,7 +60,13 @@ function createModel() {
 
   // Add a single hidden layer
   model.add(tf.layers.dense({inputShape: [1], units: 1, useBias: true}));
-
+  model.add(tf.layers.dense({units: 512, activation: 'relu'}));
+  model.add(tf.layers.dense({units: 256, activation: 'relu'}));
+  model.add(tf.layers.dense({units: 128, activation: 'relu'}));
+  model.add(tf.layers.dense({units: 64, activation: 'relu'}));
+  model.add(tf.layers.dense({units: 32, activation: 'relu'}));
+  model.add(tf.layers.dense({units: 16, activation: 'relu'}));
+  model.add(tf.layers.dense({units: 8, activation: 'relu'}));
   // Add an output layer
   model.add(tf.layers.dense({units: 1, useBias: true}));
 
@@ -68,7 +74,6 @@ function createModel() {
 }
 
 
-
 /**
  * Convert the input data to a tensors that we can use for machine
  * learning. We will also do the important best practices of _shuffling_
@@ -84,7 +89,7 @@ function convertToTensor(data) {
     tf.util.shuffle(data);
 
     // Step 2. Convert data to Tensor
-    const inputs = data.map(d => d.horsepower)
+    const inputs = data.map(d => d.horsepower);
     const labels = data.map(d => d.mpg);
 
     const inputTensor = tf.tensor2d(inputs, [inputs.length, 1]);
@@ -107,50 +112,7 @@ function convertToTensor(data) {
       inputMin,
       labelMax,
       labelMin,
-    }
-  });
-}
-
-
-/**
- * Convert the input data to a tensors that we can use for machine
- * learning. We will also do the important best practices of _shuffling_
- * the data and _normalizing_ the data
- * MPG on the y-axis.
- */
-function convertToTensor(data) {
-  // Wrapping these calculations in a tidy will dispose any
-  // intermediate tensors.
-
-  return tf.tidy(() => {
-    // Step 1. Shuffle the data
-    tf.util.shuffle(data);
-
-    // Step 2. Convert data to Tensor
-    const inputs = data.map(d => d.horsepower)
-    const labels = data.map(d => d.mpg);
-
-    const inputTensor = tf.tensor2d(inputs, [inputs.length, 1]);
-    const labelTensor = tf.tensor2d(labels, [labels.length, 1]);
-
-    //Step 3. Normalize the data to the range 0 - 1 using min-max scaling
-    const inputMax = inputTensor.max();
-    const inputMin = inputTensor.min();
-    const labelMax = labelTensor.max();
-    const labelMin = labelTensor.min();
-
-    const normalizedInputs = inputTensor.sub(inputMin).div(inputMax.sub(inputMin));
-    const normalizedLabels = labelTensor.sub(labelMin).div(labelMax.sub(labelMin));
-
-    return {
-      inputs: normalizedInputs,
-      labels: normalizedLabels,
-      // Return the min/max bounds so we can use them later.
-      inputMax,
-      inputMin,
-      labelMax,
-      labelMin,
-    }
+    };
   });
 }
 
@@ -160,10 +122,9 @@ async function trainModel(model, inputs, labels) {
   model.compile({
     optimizer: tf.train.adam(),
     loss: tf.losses.meanSquaredError,
-    metrics: ['mse'],
   });
 
-  const batchSize = 28;
+  const batchSize = 16;
   const epochs = 50;
 
   return await model.fit(inputs, labels, {
@@ -172,7 +133,7 @@ async function trainModel(model, inputs, labels) {
     shuffle: true,
     callbacks: tfvis.show.fitCallbacks(
       { name: 'Training Performance' },
-      ['loss', 'mse'],
+      ['loss'],
       { height: 200, callbacks: ['onEpochEnd'] }
     )
   });
@@ -204,7 +165,7 @@ function testModel(model, inputData, normalizationData) {
 
 
   const predictedPoints = Array.from(xs).map((val, i) => {
-    return {x: val, y: preds[i]}
+    return {x: val, y: preds[i]};
   });
 
   const originalPoints = inputData.map(d => ({
