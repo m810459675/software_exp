@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TensorFlow.js Tutorial</title>
+
+  <!-- Import TensorFlow.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+  <!-- Import tfjs-vis -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+  <script src="https://d3js.org/d3.v5.js"></script>
+  <!-- Import the main script file -->
+  <script src="script.js"></script>
+
+</head>
+
+<body>
+  <button onclick="run()">点击开始训练，没事别点</button>
+
+
+    <iframe name="message" style="display: none"></iframe>
+    <form action="/upload" enctype="multipart/form-data" method="post" target="message">
+        <p>附件：<input type="file" name="myfile" style=""></p>
+        <p>
+            <input type="submit">
+        </p>
+        <p id="success" style="display: none;">上传成功</p>
+    </form>
+</body>
+
+
+</html>
