@@ -12,13 +12,25 @@
     <!-- Import the main script file -->
     <script src="script.js"></script>
   </head>
+
   <body>
     <div><img src="picture/title.gif" width="450" height="278"></div>
-    <button onclick="run()">strat</button> <iframe name="message" style="display: none"></iframe>
+
+    <button onclick="run()">strat</button>
+
+    <iframe name="message" style="display: none"></iframe>
     <form action="/upload" enctype="multipart/form-data" method="post" target="message">
       <p>上传文件<input name="myfile" style="" type="file"></p>
       <p> <input type="submit"> </p>
-      <p id="success" style="display: none;">涓婁紶鎴愬姛</p>
+      <p id="success" style="display: none;">submit success</p>
     </form>
+
+    learning_rate:<input type="text" id="learning_rate" value="0.01" /><br />
+    batchsize:<input type="text" id="batch_size" value="16"/><br/>
+    epoch:<input type="text" id="epoch" value="32"/><br />
+    <input type="button" onclick="changePara()"  value="submit"/>
+
+
   </body>
+
 </html>

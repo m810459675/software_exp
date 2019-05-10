@@ -16,7 +16,20 @@ async function getData() {
   return cleaned;
 }
 */
+
 var path;
+var batchSize = 16;
+var epochs = 35;
+var learning_rate=0.01;
+
+function changePara(){
+  epochs=Number(document.getElementById("epoch").value);
+  learning_rate=Number(document.getElementById("learning_rate").value);
+  batchSize=Number(document.getElementById("batch_size").value);
+  console.log("27 "+typeof batchSize);
+  console.log("28 "+batchSize);
+}
+
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
@@ -166,12 +179,11 @@ function convertToTensor(data) {
 async function trainModel(model, inputs, labels) {
   // Prepare the model for training.
   model.compile({
-    optimizer: tf.train.adam(),
+    optimizer: tf.train.sgd(learning_rate),
     loss: tf.losses.meanSquaredError,
   });
 
-  const batchSize = 16;
-  const epochs = 35;
+
 
   return await model.fit(inputs, labels, {
     batchSize,
