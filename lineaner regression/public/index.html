@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+
   <head>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.css">
   <script src="bootstrap/js/bootstrap.js"></script>
@@ -15,23 +17,31 @@
     <!-- Import the main script file -->
     <script src="script.js"></script>
   </head>
+
   <body>
     <h1 style="font-size:55px" align="center">TensorFlow.js<br>神经网络<br>机器学习平台</h1>
     <iframe name="message" style="display: none"></iframe>
-    <form action="/upload" enctype="multipart/form-data" method="post" target="message">
+
+
     <div class="form-group text-center">
       <p class='text-primary lead'><strong>请选择训练样本文件</strong></p>
     </div>
+
+    <form action="/upload" enctype="multipart/form-data" method="post" target="message">
+
     <div class="form-group" align="center">
       <span class="btn btn-primary fileinput-button"><span>选择</span>
-      <input type="file"></span>
+      <input name="myfile" type="file"></span>
     </div>
+
     <div class="form-group" align="center">
       <input class='btn btn-primary' type="submit" value="上传训练样本">
       <p id="success" style="display: none;">submit success</p>
     </div>
     </form>
+
     <br>
+
     <form>
     <div class='form-group col-md-offset-4 col-md-4'>
     <label>learning_rate:</label>
@@ -40,26 +50,28 @@
     <br/>
     <div class='form-group col-md-offset-4 col-md-4'>
     <label>batchsize:</label>
-    <input type="text" class='form-control' id="learning_rate" value="16" />
+    <input type="text" class='form-control' id="batch_size" value="16" />
     </div>
     <br/>
     <div class='form-group col-md-offset-4 col-md-4'>
     <label>epoch:</label>
-    <input type="text" class='form-control' id="learning_rate" value="32" />
+    <input type="text" class='form-control' id="epoch" value="32" />
     </div>
     <br/>
     <div >
-    <input 
-        type="text" 
+    <input
+        type="text"
         class="btn btn-primary col-md-2 col-md-offset-5"
         onclick="changePara()"  value="submit"/>
     </div>
     <div class="col-md-2 col-md-offset-5">
     <br>
     </div>
-    <div>
-    <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="run()">开始训练模型</button>
-    </div>
-    </from>
+  </form>
+
+  <div>
+  <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="run()">开始训练模型</button>
+  </div>
+
   </body>
 </html>
