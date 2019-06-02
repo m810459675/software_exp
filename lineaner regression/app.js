@@ -26,10 +26,10 @@ app.get('/',function (req,res) {
 
 });
 //这里用来玩，express框架路由功能写的，与上传文件没没有关系。
-app.get('/about',function (req,res) {
-    res.type('text/plain');
-    res.send('Travel about');
-});
+// app.get('/about',function (req,res) {
+//     res.type('text/plain');
+//     res.send('Travel about');
+// });
 
 //这里就是接受form表单请求的接口路径，请求方式为post。
 

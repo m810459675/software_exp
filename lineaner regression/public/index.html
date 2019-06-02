@@ -20,19 +20,25 @@
 
   <body>
     <h1 style="font-size:55px" align="center">TensorFlow.js<br>神经网络<br>机器学习平台</h1>
-    <iframe name="message" style="display: none"></iframe>
+
 
 
     <div class="form-group text-center">
       <p class='text-primary lead'><strong>请选择训练样本文件</strong></p>
     </div>
-
+    <iframe name="message" style="display: none"></iframe>
     <form action="/upload" enctype="multipart/form-data" method="post" target="message">
 
     <div class="form-group" align="center">
-      <span class="btn btn-primary fileinput-button"><span>选择</span>
-      <input name="myfile" type="file"></span>
+      <span class="btn btn-primary fileinput-button">
+      <span>选择</span>
+      <input name="myfile" type="file" id="myfile" onchange="showfilepath(this.files)"/>
+      <div class="fileerrorTip1"></div>
+      <div class="showFileName1"></div>
+    </span>
+
     </div>
+
 
     <div class="form-group" align="center">
       <input class='btn btn-primary' type="submit" value="上传训练样本">
@@ -62,7 +68,7 @@
     <input
         type="text"
         class="btn btn-primary col-md-2 col-md-offset-5"
-        onclick="changePara()"  value="submit"/>
+        onclick="changePara()"  value="修改训练参数"/>
     </div>
     <div class="col-md-2 col-md-offset-5">
     <br>

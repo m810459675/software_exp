@@ -22,6 +22,30 @@ var batchSize = 16;
 var epochs = 35;
 var learning_rate=0.01;
 
+//显示选择文件后的文件路径
+function showfilepath(files){
+  console.log(files.length);
+  if(files.length==0){
+    $(".showFileName1").html("");
+    $(".fileerrorTip1").html("您未上传文件，或者您上传文件类型有误！").show();
+    return;
+  }
+  console.log(files);
+  console.log(files[0].size);
+  console.log(files[0].name);
+
+   if(files[0].size!=0){
+     var name=files[0].name;
+     $(".fileerrorTip1").html("").hide();
+     $(".showFileName1").html(name);
+   }
+   else{
+     $(".showFileName1").html("");
+     $(".fileerrorTip1").html("您未上传文件，或者您上传文件类型有误！").show();
+   }
+}
+
+
 function changePara(){
   epochs=Number(document.getElementById("epoch").value);
   learning_rate=Number(document.getElementById("learning_rate").value);
@@ -33,10 +57,20 @@ function changePara(){
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
+
+//当上传文件成功后，出现提示
 function uploadSuccess(data) {
+  console.log(data);
+  console.log(typeof data.myfile.size);
+
   path=data.myfile.path.substring(7,);
   console.log(path);
-
+  if(data.myfile.size!=0){
+  alert("提交文件成功");
+}
+else{
+  alert("提交文件失败，请重新选择文件");
+}
 }
 
 
