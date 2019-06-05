@@ -45,13 +45,26 @@ function showfilepath(files){
    }
 }
 
-
 function changePara(){
-  epochs=Number(document.getElementById("epoch").value);
-  learning_rate=Number(document.getElementById("learning_rate").value);
-  batchSize=Number(document.getElementById("batch_size").value);
-  console.log("27 "+typeof batchSize);
-  console.log("28 "+batchSize);
+  console.log("49 "+isNaN(document.getElementById("batch_size").value));
+  console.log("50 "+typeof document.getElementById("batch_size").value);
+
+  epochs=parseFloat(document.getElementById("epoch").value);
+  learning_rate=parseFloat(document.getElementById("learning_rate").value);
+  batchSize=parseFloat(document.getElementById("batch_size").value);
+
+  if(isNaN(epochs)||isNaN(learning_rate)||isNaN(batchSize)){
+    alert("参数不能为非数字");
+    return ;
+  }
+  if(epochs==0||learning_rate==0||batchSize==0){
+    alert("参数不能为0");
+    return;
+  }
+  alert('修改参数成功');
+  console.log("61 "+batchSize);
+  console.log("62 "+document.getElementById("batch_size").value);
+
 }
 
 function getRndInteger(min, max) {

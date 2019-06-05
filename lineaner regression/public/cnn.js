@@ -31,25 +31,19 @@ async function showExamples(data) {
   }
 }
 
-function cnn_getData(){
+async function run() {
+  const data = new MnistData();
+  await data.load();
+  await showExamples(data);
+  const model = getModel();
+tfvis.show.modelSummary({name: 'Model Architecture'}, model);
 
+await train(model, data);
+await showAccuracy(model, data);
+await showConfusion(model, data);
 }
 
-async function cnn_run() {
-  cnn_getData();
-//
-//   const data = new MnistData();
-//   await data.load();
-//   await showExamples(data);
-//   const model = cnn_Model();
-// tfvis.show.modelSummary({name: 'Model Architecture'}, model);
-//
-// await cnn_train(model, data);
-// await showAccuracy(model, data);
-// await showConfusion(model, data);
-}
-
-function cnn_Model() {
+function getModel() {
   const model = tf.sequential();
 
   const IMAGE_WIDTH = 28;
@@ -111,7 +105,7 @@ function cnn_Model() {
 }
 
 
-async function cnn_train(model, data) {
+async function train(model, data) {
   const metrics = ['loss', 'val_loss', 'acc', 'val_acc'];
   const container = {
     name: 'Model Training', styles: { height: '1000px' }
@@ -147,6 +141,8 @@ async function cnn_train(model, data) {
   });
 }
 
+
+document.addEventListener('DOMContentLoaded', run);
 
 const classNames = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
 

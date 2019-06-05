@@ -2,6 +2,7 @@
 <html>
 
   <head>
+
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.css">
@@ -15,13 +16,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
     <script src="https://d3js.org/d3.v5.js"></script>
     <!-- Import the main script file -->
-    <script src="script.js"></script>
+    <script src="dense.js"></script>
+    <!-- Import the data file -->
+    <script src="data.js" type="module"></script>
+    <!-- Import the main script file -->
+    <script src="cnn.js" type="module"></script>
   </head>
 
   <body>
     <h1 style="font-size:55px" align="center">TensorFlow.js<br>神经网络<br>机器学习平台</h1>
-
-
 
     <div class="form-group text-center">
       <p class='text-primary lead'><strong>请选择训练样本文件</strong></p>
