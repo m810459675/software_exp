@@ -88,7 +88,7 @@ else{
 
 
 
-async function getData(){
+async function mlp_getData(){
   const value=[];
 	var num=0;
 
@@ -116,9 +116,9 @@ const values=value.map(v=>({
   return values;
 }
 
-async function run() {
+async function mlp_run() {
   // Load and plot the original input data that we are going to train on.
-  const data = await getData();
+  const data = await mlp_getData();
 
   const values = data.map(d => ({
     x: d.x,

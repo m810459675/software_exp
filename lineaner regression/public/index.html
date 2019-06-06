@@ -15,12 +15,15 @@
     <!-- Import tfjs-vis -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
     <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="https://cdn.bootcss.com/PapaParse/5.0.0-beta.0/papaparse.js"></script>
     <!-- Import the main script file -->
     <script src="dense.js"></script>
+    <script src="utils.js"  ></script>
     <!-- Import the data file -->
     <script src="data.js" type="module"></script>
     <!-- Import the main script file -->
-    <script src="cnn.js" type="module"></script>
+    <script src="cnn.js" ></script>
+
   </head>
 
   <body>
@@ -79,7 +82,11 @@
   </form>
 
   <div>
-  <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="run()">开始训练模型</button>
+  <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="mlp_run()">开始训练模型</button>
+  </div>
+
+  <div>
+  <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="cnn_run()">cnn_model_test</button>
   </div>
 
   </body>
