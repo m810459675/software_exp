@@ -16,78 +16,17 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
     <script src="https://d3js.org/d3.v5.js"></script>
     <script src="https://cdn.bootcss.com/PapaParse/5.0.0-beta.0/papaparse.js"></script>
-    <!-- Import the main script file -->
-    <script src="dense.js"></script>
-    <script src="utils.js"  ></script>
-    <!-- Import the data file -->
-    <script src="data.js" type="module"></script>
-    <!-- Import the main script file -->
-    <script src="cnn.js" ></script>
+    <script src="index.js"></script>
+    <script src="mlp_module.js"></script>
+    <script src="read_data.js"  ></script>
+    <script src="cnn_module.js" ></script>
 
   </head>
 
   <body>
-    <h1 style="font-size:55px" align="center">TensorFlow.js<br>神经网络<br>机器学习平台</h1>
-
-    <div class="form-group text-center">
-      <p class='text-primary lead'><strong>请选择训练样本文件</strong></p>
-    </div>
-    <iframe name="message" style="display: none"></iframe>
-    <form action="/upload" enctype="multipart/form-data" method="post" target="message">
-
-    <div class="form-group" align="center">
-      <span class="btn btn-primary fileinput-button">
-      <span>选择</span>
-      <input name="myfile" type="file" id="myfile" onchange="showfilepath(this.files)"/>
-      <div class="fileerrorTip1"></div>
-      <div class="showFileName1"></div>
-    </span>
-
-    </div>
-
-
-    <div class="form-group" align="center">
-      <input class='btn btn-primary' type="submit" value="上传训练样本">
-      <p id="success" style="display: none;">submit success</p>
-    </div>
-    </form>
-
-    <br>
-
-    <form>
-    <div class='form-group col-md-offset-4 col-md-4'>
-    <label>learning_rate:</label>
-    <input type="text" class='form-control' id="learning_rate" value="0.01" />
-    </div>
-    <br/>
-    <div class='form-group col-md-offset-4 col-md-4'>
-    <label>batchsize:</label>
-    <input type="text" class='form-control' id="batch_size" value="16" />
-    </div>
-    <br/>
-    <div class='form-group col-md-offset-4 col-md-4'>
-    <label>epoch:</label>
-    <input type="text" class='form-control' id="epoch" value="32" />
-    </div>
-    <br/>
-    <div >
-    <input
-        type="text"
-        class="btn btn-primary col-md-2 col-md-offset-5"
-        onclick="changePara()"  value="修改训练参数"/>
-    </div>
-    <div class="col-md-2 col-md-offset-5">
-    <br>
-    </div>
-  </form>
-
-  <div>
-  <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="mlp_run()">开始训练模型</button>
-  </div>
-
-  <div>
-  <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="cnn_run()">cnn_model_test</button>
-  </div>
+<a style="font-size:200px" href="/mlp_page.html">mlp</a>
+<br />
+<a style="font-size:200px" href="/cnn_page.html">cnn</a>
 
   </body>
 </html>

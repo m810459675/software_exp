@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.css">
+  <script src="bootstrap/js/bootstrap.js"></script>
+  <link rel="stylesheet" type="text/css" href="newType.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>TensorFlow.js Tutorial</title>
+    <!-- Import TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+    <!-- Import tfjs-vis -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="https://cdn.bootcss.com/PapaParse/5.0.0-beta.0/papaparse.js"></script>
+    <!-- Import the main script file -->
+    <script src="index.js"></script>
+    <script src="mlp_module.js"></script>
+    <script src="read_data.js"  ></script>
+    <script src="cnn_module.js" ></script>
+
+  </head>
+
+  <body>
+    <h1 style="font-size:55px" align="center">TensorFlow.js<br>神经网络<br>机器学习平台</h1>
+
+    <div class="form-group text-center">
+      <p class='text-primary lead'><strong>请选择训练样本文件</strong></p>
+    </div>
+
+    <iframe name="message" style="display: none"></iframe>
+
+    <form action="/upload1" enctype="multipart/form-data" method="post" target="message">
+    <div class="form-group" align="center">
+      <span class="btn btn-primary fileinput-button">
+      <span>选择训练集数据</span>
+      <input name="myfile" type="file" id="myfile" onchange="showfilepath(this.files,2)"/>
+      <div class="fileerrorTip2"></div>
+      <div class="showFileName2"></div>
+    </span>
+    </div>
+    <div style="display:none">
+      <input id="train_data_submit" class='btn btn-primary' type="submit" value="上传训练集数据">
+    </div>
+    </form>
+
+    <form action="/upload2" enctype="multipart/form-data" method="post" target="message">
+    <div class="form-group" align="center">
+      <span class="btn btn-primary fileinput-button">
+      <span>选择训练集标签</span>
+      <input name="myfile" type="file" id="myfile" onchange="showfilepath(this.files,3)"/>
+      <div class="fileerrorTip3"></div>
+      <div class="showFileName3"></div>
+    </span>
+    </div>
+    <div style="display:none">
+      <input id="train_label_submit" class='btn btn-primary' type="submit" value="上传训练集标签">
+    </div>
+    </form>
+
+
+    <form action="/upload3" enctype="multipart/form-data" method="post" target="message">
+    <div class="form-group" align="center">
+      <span class="btn btn-primary fileinput-button">
+      <span>选择测试集数据</span>
+      <input name="myfile" type="file" id="myfile" onchange="showfilepath(this.files,4)"/>
+      <div class="fileerrorTip4"></div>
+      <div class="showFileName4"></div>
+    </span>
+    </div>
+    <div style="display:none">
+      <input id="test_data_submit" class='btn btn-primary' type="submit" value="上传测试集数据">
+    </div>
+    </form>
+
+    <form action="/upload4" enctype="multipart/form-data" method="post" target="message">
+    <div class="form-group" align="center">
+      <span class="btn btn-primary fileinput-button">
+      <span>选择测试集标签</span>
+      <input name="myfile" type="file" id="myfile" onchange="showfilepath(this.files,5)"/>
+      <div class="fileerrorTip5"></div>
+      <div class="showFileName5"></div>
+    </span>
+    </div>
+    <div style="display:none">
+      <input id="test_label_submit" type="submit" value="上传测试集标签">
+    </div>
+
+    </form>
+
+    <div>
+    <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="formsubmit()">上传文件</button>
+    </div>
+
+    <form>
+    <div class='form-group col-md-offset-4 col-md-4'>
+    <label>learning_rate:</label>
+    <input type="text" class='form-control' id="learning_rate" value="0.1" />
+    </div>
+    <br/>
+
+    <div class='form-group col-md-offset-4 col-md-4'>
+    <label>batchsize:</label>
+    <input type="text" class='form-control' id="batch_size" value="50" />
+    </div>
+    <br/>
+
+    <div class='form-group col-md-offset-4 col-md-4'>
+    <label>epoch:</label>
+    <input type="text" class='form-control' id="epoch" value="5" />
+    </div>
+    <br/>
+
+    <div class='form-group col-md-offset-4 col-md-4'>
+    <label>the size of train data</label>
+    <input type="text" class='form-control' id="train_data_size" value="550" />
+    </div>
+    <br/>
+
+    <div class='form-group col-md-offset-4 col-md-4'>
+    <label>the size of test data</label>
+    <input type="text" class='form-control' id="test_data_size" value="100" />
+    </div>
+    <br/>
+
+    <div >
+    <input
+        type="text"
+        class="btn btn-primary col-md-2 col-md-offset-5"
+        onclick="changePara_cnn()"  value="修改训练参数"/>
+    </div>
+
+    <div class="col-md-2 col-md-offset-5">
+    <br>
+    </div>
+  </form>
+
+  <div>
+  <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="cnn_run()">cnn_model_test</button>
+  </div>
+
+  </body>
+</html>
