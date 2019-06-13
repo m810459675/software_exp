@@ -21,13 +21,15 @@ var path=window.path;
 var batchSize = window.batchSize;
 var epochs = window.epochs;
 var learning_rate=window.learning_rate;
+var model = createModel();
 
-
+function mlp_download(){
+  model.save('downloads://'+Date.now()+'_mlp');
+}
 
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
-
 
 async function mlp_getData(){
   const value=[];
@@ -83,7 +85,7 @@ async function mlp_run() {
 //console.log(values);
   // More code will be added below
   // Create the model
-const model = createModel();
+
 tfvis.show.modelSummary({name: 'Model Summary'}, model);
 
 // Convert the data to a form we can use for training.
@@ -97,6 +99,7 @@ console.log('Done Training');
 // Make some predictions using the model and compare them to the
 // original data
 testModel(model, data, tensorData);
+
 }
 
 
@@ -109,15 +112,13 @@ function createModel() {
   // Add a single hidden layer
   model.add(tf.layers.dense({inputShape: [1], units: 1, useBias: true}));
   model.add(tf.layers.dense({units: 1024, useBias: true}));
-  model.add(tf.layers.dense({units: 1024, activation: 'relu'}));
-  /*
-  model.add(tf.layers.dense({units: 1024, activation: 'relu'}));
-  model.add(tf.layers.dense({units: 512, activation: 'relu'}));
-  model.add(tf.layers.dense({units: 256, activation: 'relu'}));
-  model.add(tf.layers.dense({units: 128, activation: 'relu'}));
-  model.add(tf.layers.dense({units: 64, activation: 'relu'}));
-  model.add(tf.layers.dense({units: 32, activation: 'relu'}));
-  */
+  model.add(tf.layers.dense({units: 10, activation: 'relu'}));
+
+  model.add(tf.layers.dense({units: 10, activation: 'relu'}));
+  model.add(tf.layers.dense({units: 10, activation: 'relu'}));
+  model.add(tf.layers.dense({units: 10, activation: 'relu'}));
+  model.add(tf.layers.dense({units: 10, activation: 'relu'}));
+  model.add(tf.layers.dense({units: 10, activation: 'relu'}));
   // Add an output layer
   model.add(tf.layers.dense({units: 1, useBias: true}));
 

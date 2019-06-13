@@ -9,6 +9,11 @@
 const IMAGE_WIDTH = 28;
 const IMAGE_HEIGHT = 28;
 const IMAGE_CHANNELS = 1;
+var model = cnn_getModel();
+
+function cnn_download(){
+  model.save('downloads://'+Date.now()+'_cnn');
+}
 
 async function cnn_run() {
    const data=new WebsitePhishingDataset();
@@ -20,7 +25,7 @@ async function cnn_run() {
        return;
      }
      // await showExamples(data);
-     const model = cnn_getModel();
+
    tfvis.show.modelSummary({name: 'Model Architecture'}, model);
   await cnn_train(model, data);
   await showAccuracy(model, data);
