@@ -21,7 +21,7 @@ var path=window.path;
 var batchSize = window.batchSize;
 var epochs = window.epochs;
 var learning_rate=window.learning_rate;
-var model = createModel();
+var mlp_model = createModel();
 
 function mlp_download(){
   model.save('downloads://'+Date.now()+'_mlp');
@@ -86,19 +86,19 @@ async function mlp_run() {
   // More code will be added below
   // Create the model
 
-tfvis.show.modelSummary({name: 'Model Summary'}, model);
+tfvis.show.modelSummary({name: 'Model Summary'}, mlp_model);
 
 // Convert the data to a form we can use for training.
 const tensorData = convertToTensor(data);
 const {inputs, labels} = tensorData;
 
 // Train the model
-await trainModel(model, inputs, labels);
+await trainModel(mlp_model, inputs, labels);
 console.log('Done Training');
 
 // Make some predictions using the model and compare them to the
 // original data
-testModel(model, data, tensorData);
+testModel(mlp_model, data, tensorData);
 
 }
 
@@ -112,13 +112,13 @@ function createModel() {
   // Add a single hidden layer
   model.add(tf.layers.dense({inputShape: [1], units: 1, useBias: true}));
   model.add(tf.layers.dense({units: 1024, useBias: true}));
-  model.add(tf.layers.dense({units: 10, activation: 'relu'}));
+  model.add(tf.layers.dense({units: 1024, activation: 'relu'}));
 
-  model.add(tf.layers.dense({units: 10, activation: 'relu'}));
-  model.add(tf.layers.dense({units: 10, activation: 'relu'}));
-  model.add(tf.layers.dense({units: 10, activation: 'relu'}));
-  model.add(tf.layers.dense({units: 10, activation: 'relu'}));
-  model.add(tf.layers.dense({units: 10, activation: 'relu'}));
+  model.add(tf.layers.dense({units: 1024, activation: 'relu'}));
+  // model.add(tf.layers.dense({units: 1024, activation: 'relu'}));
+  // model.add(tf.layers.dense({units: 1024, activation: 'relu'}));
+  // model.add(tf.layers.dense({units: 1024, activation: 'relu'}));
+  // model.add(tf.layers.dense({units: 1024, activation: 'relu'}));
   // Add an output layer
   model.add(tf.layers.dense({units: 1, useBias: true}));
 
