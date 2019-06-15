@@ -26,7 +26,7 @@
 
   <body>
     <h1 style="font-size:55px" align="center">TensorFlow.js<br>神经网络<br>机器学习平台</h1>
-
+    <h2 class="bg-primary" align="center">CNN神经网络模型</h2>
     <div class="form-group text-center">
       <p class='text-primary lead'><strong>请选择训练样本文件</strong></p>
     </div>
@@ -39,8 +39,9 @@
       <span>选择训练集数据</span>
       <input name="myfile" type="file" id="myfile" onchange="showfilepath(this.files,2)"/>
       <div class="fileerrorTip2"></div>
-      <div class="showFileName2"></div>
+      
     </span>
+    <div class="showFileName2 text-primary lead"></div>
     </div>
     <div style="display:none">
       <input id="train_data_submit" class='btn btn-primary' type="submit" value="上传训练集数据">
@@ -53,8 +54,9 @@
       <span>选择训练集标签</span>
       <input name="myfile" type="file" id="myfile" onchange="showfilepath(this.files,3)"/>
       <div class="fileerrorTip3"></div>
-      <div class="showFileName3"></div>
+      
     </span>
+    <div class="showFileName3 text-primary lead"></div>
     </div>
     <div style="display:none">
       <input id="train_label_submit" class='btn btn-primary' type="submit" value="上传训练集标签">
@@ -68,8 +70,9 @@
       <span>选择测试集数据</span>
       <input name="myfile" type="file" id="myfile" onchange="showfilepath(this.files,4)"/>
       <div class="fileerrorTip4"></div>
-      <div class="showFileName4"></div>
+      
     </span>
+    <div class="showFileName4 text-primary lead"></div>
     </div>
     <div style="display:none">
       <input id="test_data_submit" class='btn btn-primary' type="submit" value="上传测试集数据">
@@ -82,8 +85,9 @@
       <span>选择测试集标签</span>
       <input name="myfile" type="file" id="myfile" onchange="showfilepath(this.files,5)"/>
       <div class="fileerrorTip5"></div>
-      <div class="showFileName5"></div>
+      
     </span>
+    <div class="showFileName5 text-primary lead"></div>
     </div>
     <div style="display:none">
       <input id="test_label_submit" type="submit" value="上传测试集标签">
@@ -94,34 +98,36 @@
     <div>
     <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="formsubmit()">上传文件</button>
     </div>
-
+    <br><br><br>
+    <div class="col-md-12">
+<p class='text-primary' align="center">我们预设了五个参数，但你可以自由调整他们，关注参数的变化对训练结果的影响。</p></div>
     <form>
     <div class='form-group col-md-offset-4 col-md-4'>
-    <label>learning_rate:</label>
+    <label title="学习率">learning rate:</label>
     <input type="text" class='form-control' id="learning_rate" value="0.1" />
     </div>
     <br/>
 
     <div class='form-group col-md-offset-4 col-md-4'>
-    <label>batchsize:</label>
+    <label title="批大小">batchsize:</label>
     <input type="text" class='form-control' id="batch_size" value="50" />
     </div>
     <br/>
 
     <div class='form-group col-md-offset-4 col-md-4'>
-    <label>epoch:</label>
+    <label title="迭代次数">epoch:</label>
     <input type="text" class='form-control' id="epoch" value="5" />
     </div>
     <br/>
 
     <div class='form-group col-md-offset-4 col-md-4'>
-    <label>the size of train data</label>
+    <label title="训练样本数量">the size of train data</label>
     <input type="text" class='form-control' id="train_data_size" value="550" />
     </div>
     <br/>
 
     <div class='form-group col-md-offset-4 col-md-4'>
-    <label>the size of test data</label>
+    <label title="测试样本数量">the size of test data</label>
     <input type="text" class='form-control' id="test_data_size" value="100" />
     </div>
     <br/>
@@ -139,11 +145,7 @@
   </form>
 
   <div>
-  <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="cnn_run()">cnn_model_test</button>
-  </div>
-
-  <div>
-  <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="cnn_download()">下载训练模型</button>
+  <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="cnn_run()">开始训练</button>
   </div>
 
   </body>

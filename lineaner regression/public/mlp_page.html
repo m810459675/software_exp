@@ -26,21 +26,21 @@
 
   <body>
     <h1 style="font-size:55px" align="center">TensorFlow.js<br>神经网络<br>机器学习平台</h1>
-
+<h2 class="bg-primary" align="center">MLP神经网络模型</h2>
     <div class="form-group text-center">
-      <p class='text-primary lead'><strong>请选择训练样本文件</strong></p>
+      <p class='text-primary lead'><strong>请选择样本文件</strong></p>
     </div>
     <iframe name="message" style="display: none"></iframe>
     <form action="/upload" enctype="multipart/form-data" method="post" target="message">
 
     <div class="form-group" align="center">
       <span class="btn btn-primary fileinput-button">
-      <span>选择</span>
+      <span>选择样本文件</span>
       <input name="myfile" type="file" id="myfile" onchange="showfilepath(this.files,1)"/>
       <div class="fileerrorTip1"></div>
-      <div class="showFileName1"></div>
+      
     </span>
-
+	<div class="showFileName1 text-primary lead"></div>
     </div>
 
 
@@ -51,20 +51,20 @@
     </form>
 
     <br>
-
+<p class='text-primary' align="center">我们预设了三个参数，但你可以自由调整他们，关注参数的变化对训练结果的影响。</p>
     <form>
     <div class='form-group col-md-offset-4 col-md-4'>
-    <label>learning_rate:</label>
+    <label title="学习率">learning_rate:</label>
     <input type="text" class='form-control' id="learning_rate" value="0.01" />
     </div>
     <br/>
     <div class='form-group col-md-offset-4 col-md-4'>
-    <label>batchsize:</label>
+    <label title="批大小">batchsize:</label>
     <input type="text" class='form-control' id="batch_size" value="16" />
     </div>
     <br/>
     <div class='form-group col-md-offset-4 col-md-4'>
-    <label>epoch:</label>
+    <label title="迭代次数">epoch:</label>
     <input type="text" class='form-control' id="epoch" value="32" />
     </div>
     <br/>
@@ -83,9 +83,6 @@
   <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="mlp_run()">开始训练模型</button>
   </div>
 
-  <div>
-  <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="mlp_download()">下载训练模型</button>
-  </div>
 
   </body>
 </html>
