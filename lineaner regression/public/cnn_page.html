@@ -39,7 +39,7 @@
       <span>选择训练集数据</span>
       <input name="myfile" type="file" id="myfile" onchange="showfilepath(this.files,2)"/>
       <div class="fileerrorTip2"></div>
-      
+
     </span>
     <div class="showFileName2 text-primary lead"></div>
     </div>
@@ -54,7 +54,7 @@
       <span>选择训练集标签</span>
       <input name="myfile" type="file" id="myfile" onchange="showfilepath(this.files,3)"/>
       <div class="fileerrorTip3"></div>
-      
+
     </span>
     <div class="showFileName3 text-primary lead"></div>
     </div>
@@ -70,7 +70,7 @@
       <span>选择测试集数据</span>
       <input name="myfile" type="file" id="myfile" onchange="showfilepath(this.files,4)"/>
       <div class="fileerrorTip4"></div>
-      
+
     </span>
     <div class="showFileName4 text-primary lead"></div>
     </div>
@@ -85,7 +85,7 @@
       <span>选择测试集标签</span>
       <input name="myfile" type="file" id="myfile" onchange="showfilepath(this.files,5)"/>
       <div class="fileerrorTip5"></div>
-      
+
     </span>
     <div class="showFileName5 text-primary lead"></div>
     </div>
@@ -140,12 +140,17 @@
     </div>
 
     <div class="col-md-2 col-md-offset-5">
-    <br>
+    <br/>
     </div>
   </form>
 
   <div>
   <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="cnn_run()">开始训练</button>
+  </div>
+
+
+  <div>
+  <button class='btn btn-primary col-md-2 col-md-offset-5' onclick="cnn_download()">下载训练模型</button>
   </div>
 
   </body>
